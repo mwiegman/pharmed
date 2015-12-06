@@ -1,5 +1,7 @@
 @import "settings";
 @import "foundation";
+@import "flipster";
+@import "animate";
 
 // Or selectively include components
 // @import
@@ -38,3 +40,640 @@
 //   "foundation/components/type",
 //   "foundation/components/offcanvas",
 //   "foundation/components/visibility";
+
+/*----------
+Navigation and Header
+----------*/
+
+@media #{$medium-only} {
+  .top-bar {
+    text-align: center !important;
+    
+  }
+
+  ul.center-buttons {
+    display: inline-block !important;
+    float: none !important;
+  }  
+
+  header {
+  background-color: $primary-color;
+  }
+}
+
+.tab-bar {
+  @media #{$small-only} {
+    line-height: rem-calc(30);
+    }
+}
+
+.tab-bar,
+.tab-bar-section,
+.tab-bar .menu-icon,
+.left-small,
+ {
+  @media #{$small-only} {
+    height: rem-calc(30);
+    }
+}
+
+.title {
+  color: $complement-color;
+  font-size: rem-calc(12);
+  font-weight: bold;
+}
+
+svg {  
+  height: 100%;
+
+  @media #{$medium-only} {
+    width: 50%;
+  }   
+
+  @media #{$small-only} {
+    width: 100%;
+  }  
+}
+
+
+/*----------
+Footer
+----------*/
+
+footer {
+  @media #{$medium-up} {
+    margin-top: 40px;
+  }
+  
+  padding: 50px;
+  background-color: $secondary-color;
+}
+
+.button {
+  background-color: $primary-color;
+
+  &:hover {
+  background-color: scale-color($primary-color, $lightness: -20%);
+  }
+}
+
+.copyright {
+  margin-bottom: 0;
+}
+
+.social {
+  padding-top: 5px;
+
+  a {
+  color: inherit;
+  }
+}
+
+
+/*----------
+Home page slider
+----------*/
+.flipster {
+  @media #{$medium-up} {
+    margin-top: rem-calc(10);   
+    min-height: 460px;
+    }  
+
+  @media #{$large-up} {
+   min-height: 490px;
+    }    
+}
+
+.flipster__button {
+  color: black;
+}
+
+.flipster__button:hover,
+.flipster__button:focus {
+  background-color: transparent;
+  color: black;
+}
+
+.flipster--coverflow .flipster__item__content {
+  backspace-visibility: hidden;
+}
+
+.flipster__button svg {
+  @media #{$small-only} {
+    width: 1em;
+  }
+}
+
+/*----------
+Slider content
+----------*/
+
+.clientA {
+  width: 400px;
+  height: 400px;
+  background-color: $secondary-color; 
+  color: white;
+  text-align: center; 
+  border-radius: $global-radius; 
+
+  div {
+  position: relative;
+  top: 25px;
+  }
+  
+  h1 {
+  font-size: rem-calc(18);
+  }
+  h2 {
+  font-size: rem-calc(16);
+  }
+
+  img {
+    width: 50%;
+    height: auto;
+  }
+
+  @media #{$small-only} {
+    height: 225px;
+      img {
+        width: 25%;
+        padding-bottom: rem-calc(10);
+      }
+
+      div {
+        height: 100%;
+        top: 0;
+        padding-top: rem-calc(10);        
+      }
+
+      h1 {
+        font-size: rem-calc(16);        
+        }
+      h2 {
+      font-size: rem-calc(14);
+      }
+      p {
+      font-size: rem-calc(13);
+      margin-bottom: rem-calc(10);
+      }
+    }
+
+}
+
+.clientB {
+  @extend .clientA;
+  background-color: $primary-color;
+}
+
+.clientC {
+  @extend .clientA;
+  background-color: $complement-color;
+}
+
+/*----------
+Home page sections
+----------*/
+$overlay: linear-gradient(rgba(0,0,0, 0.4), rgba(0,0,0, 0.4)) center no-repeat;
+
+#services {  
+  background-color: $secondary-color;
+  background: $overlay,
+              url("../images/pills.jpg") center no-repeat;
+  background-size: cover;
+  color: white;  
+
+
+  h2 {
+  color: white !important;
+  }
+
+  @media #{$medium-up} {
+    background-clip: content-box;
+
+    div {
+    padding-right: $column-gutter;
+    padding-left: $column-gutter;
+    }
+  }  
+
+  @media #{$small-only} {
+    padding-top: rem-calc(40);
+    padding-bottom: rem-calc(20);      
+  }
+}
+
+#about {  
+  background-color: $secondary-color;
+  background: $overlay,
+              url("../images/medicine.jpg") center no-repeat;
+  background-size: cover;
+  color: white;  
+
+  h2 {
+  color: white !important;
+  }
+
+  @media #{$medium-up} {
+    background-clip: content-box;
+
+    div {
+    padding-right: $column-gutter;
+    padding-left: $column-gutter;
+    }
+  }  
+
+  @media #{$small-only} {
+    padding-top: rem-calc(40); 
+    padding-bottom: rem-calc(20);
+    background: white; 
+    color: $body-font-color;
+
+    h2 {
+      color: $body-font-color !important;
+      }   
+
+    .button {
+      background-color: $secondary-color;
+
+      &:hover {
+      background-color: scale-color($secondary-color, $lightness: -20%);
+      }
+    }
+  }
+}
+
+#contact {  
+  background-color: $secondary-color;
+  background: $overlay,
+              url("../images/pills2.jpg") center no-repeat;
+  background-size: cover;
+  color: white;  
+
+  h2 {
+  color: white !important;
+  }
+
+  @media #{$small-only} {
+    padding-top: rem-calc(40);  
+    padding-bottom: rem-calc(20);      
+  }
+}
+
+
+/*----------
+Page headers
+----------*/
+
+@mixin header {
+  min-height: 40vh;  
+  background-size: cover;
+  color: white;
+  max-width: 100%;
+  max-height: 100%;
+  margin-bottom: 40px;
+
+  h1 {
+  color: white !important;
+  padding-top: rem-calc(20) !important;
+  } 
+}
+
+.services-header {  
+  background-color: $secondary-color;
+  background: $overlay,
+              url("../images/medicine.jpg") center no-repeat;
+  @include header;
+  
+}
+
+.about-header {    
+  background-color: $secondary-color;
+  background: $overlay,
+              url("../images/pills2.jpg") center no-repeat; 
+  @include header;
+}
+
+.contact-header {    
+  background-color: $secondary-color;
+  background: $overlay,
+              url("../images/conference-room.jpg") center no-repeat; 
+  @include header;
+}
+
+.studies-header {    
+  background-color: $secondary-color;
+  background: $overlay,
+              url("../images/pill.jpg") center no-repeat; 
+  @include header;
+}
+
+.news-header {    
+  background-color: $secondary-color;
+  background: $overlay,
+              url("../images/medications.jpg") center no-repeat; 
+  @include header;
+}
+
+.resources-header {    
+  background-color: $secondary-color;
+  background: $overlay,
+              url("../images/drugs.jpg") center no-repeat; 
+  @include header;
+}
+
+/*----------
+Services page
+----------*/
+
+.align-odd {
+    @media #{$medium-up} {
+    text-align: right;
+    }
+
+  @media #{$small-only} {
+    text-align: center;
+    }
+  }
+
+.align-even {
+  @media #{$medium-up} {
+    text-align: left;
+    }
+
+  @media #{$small-only} {
+    text-align: center;
+    }
+  }
+
+/*----------
+ About page timeline - 
+ Codrops vertical timeline blueprint
+ ----------*/
+.timeline {
+  margin: 40px 0 0 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+
+  h2 {
+  color: white;
+  font-size: rem-calc(32);
+  }
+} 
+
+/* The line */
+.timeline:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  background: $primary-color;
+  left: 20%;
+  margin-left: -10px;
+
+  @media #{$small-only} {    
+    display: none;  
+  }
+}
+
+.timeline > li {
+  position: relative;
+}
+
+/* The date/time */
+.timeline > li .time {
+  display: block;
+  width: 25%;
+  padding-right: 100px;
+  position: absolute;
+  line-height: 0.9;
+  font-size: rem-calc(32);
+  color: scale-color($primary-color, $lightness: -30%);
+
+  @media #{$small-only} {
+    width: 100%;
+    position: relative;
+    padding: 0 0 20px 0;
+    text-align: left;  
+  }
+
+  @media #{$medium-only} {
+    left: -5%;
+    font-size: rem-calc(27);  
+  }
+
+  @media #{$large-up} {    
+    font-size: rem-calc(37);  
+  }
+}
+
+.timeline > li:nth-child(odd) .time {
+  color: $primary-color;
+}
+
+/* Right content */
+.timeline > li .tl_label {
+  margin: 0 0 15px 25%;
+  background: scale-color($primary-color, $lightness: -30%);
+  color: #fff;
+  padding: 2em;
+  font-size: 1.2em;
+  font-weight: 300;
+  line-height: 1.4;
+  position: relative;
+  border-radius: 5px;
+
+  @media #{$small-only} {    
+    margin: 0 0 60px 0;
+    padding: 1em;
+    font-weight: 400;
+    font-size: 95%;  
+  }
+}
+
+.timeline > li:nth-child(odd) .tl_label {
+  background: $primary-color;
+}
+
+.timeline > li .tl_label h2 { 
+  margin-top: 0px;
+  padding: 0 0 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+}
+
+/* The triangle */
+.timeline > li .tl_label:after {
+  right: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+  border-right-color: scale-color($primary-color, $lightness: -30%);
+  border-width: 10px;
+  top: 10px;
+
+  @media #{$small-only} {
+    right: auto;
+    left: 20px;
+    border-right-color: transparent;
+    border-bottom-color: scale-color($primary-color, $lightness: -30%);
+    top: -20px;  
+  }
+}
+
+.timeline > li:nth-child(odd) .tl_label:after {
+  border-right-color: $primary-color;
+
+  @media #{$small-only} {
+    border-right-color: transparent;
+    border-bottom-color: $primary-color;  
+  }
+}
+
+/* The icons */
+.timeline > li .fa {
+  width: 40px;
+  height: 40px;  
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  font-size: 1.4em;
+  line-height: 40px;
+  -webkit-font-smoothing: antialiased;
+  position: absolute;
+  color: #fff;
+  background: scale-color($primary-color, $lightness: -30%);
+  border-radius: 50%;
+  box-shadow: 0 0 0 8px $primary-color;
+  text-align: center;
+  left: 20%;
+  top: 0;
+  margin: 0 0 0 -25px;
+
+  @media #{$small-only} {
+    position: relative;
+    float: right;
+    left: auto;
+    margin: -55px 5px 0 0px;   
+  }
+}
+
+
+/*----------
+Contact page
+----------*/
+form {
+  border: 1px solid $primary-color;
+  border-radius: $global-radius;
+  padding: rem-calc(10);
+  background-color: $primary-color;
+
+  @media #{$small-only} {
+    margin-bottom: 20px;
+    }
+}
+
+.vcard_li {
+  margin-top: rem-calc(16) !important;
+}
+
+.compass,
+.check {
+  color: $secondary-color;
+}
+
+.eye {
+  color: $primary-color;
+}
+
+.field_required {
+  color: #f04124;
+}
+
+
+/*----------
+Case Studies page
+----------*/
+
+#clientA,
+#clientB,
+#clientC {
+
+  @media #{$small-only} {
+  h3, h4 {
+    text-align: center;
+    }
+  }
+}
+
+
+/*----------
+News page
+----------*/
+
+.news {
+  border: 1px solid $primary-color;
+  border-radius: $global-radius;
+  height: 60vh;
+  overflow: auto;
+  margin-bottom: rem-calc(10); 
+
+  h4 {
+  text-decoration: underline;
+  }
+}
+
+
+/*----------
+Resources page
+----------*/
+
+.calculator {
+  margin-top: rem-calc(20);
+}
+
+iframe {
+  border: 0;  
+}
+
+
+/*----------
+Page load effects
+----------*/
+
+body {
+    opacity: 1;
+    transition: 0.5s opacity;
+}
+
+body.fade-out {
+    opacity: 0;
+    transition: none;
+}
+
+#header {  
+  animation-delay: 0.5s;
+  animation-duration: 1s;
+  -webkit-animation-delay: 0.5s;
+  -webkit-animation-duration: 1s;
+  -moz-animation-delay: 0.5s;
+  -moz-animation-duration: 1s;
+}
+
+#title {  
+  animation-delay: 0.8s;  
+  -webkit-animation-delay: 0.8s;  
+  -moz-animation-delay: 0.8s;  
+}
+
+#flipster {
+  animation-delay: 1.1s;  
+  -webkit-animation-delay: 1.1s;  
+  -moz-animation-delay: 1.1s;
+}
+
