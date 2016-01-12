@@ -1,0 +1,5 @@
+name: "PharMed Consulting LLC" 
+
+exclude: ['scss']
+
+include: ['.htaccess']
