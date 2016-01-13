@@ -6,7 +6,40 @@
 
   <head>
     {% include head.html %}     
-    <title>PharMed | Industry News</title>        
+    <title>PharMed | Industry News</title>      
+    <script type="text/javascript">
+    // Parses returned response and extracts  
+    // the title, links, and text of each news story.  
+    function fda_stories(o){  
+      var items = o.query.results.item;  
+      var fda_output = '';  
+      var no_items=items.length;  
+      for(var i=0;i<no_items;i++){  
+        var title = items[i].title;  
+        var link = items[i].link;  
+        var desc = items[i].description; 
+        var date = items[i].pubDate; 
+        fda_output += "<h4><a href='" + link + "'>"+title+"</a></h4><p>" + date + "</p><p>" + desc + "</p>";  
+        }    
+    // Place news stories in div tag  
+      document.getElementById('drugs').innerHTML = fda_output;      
+    }  
+
+    function cdrh_stories(o){  
+      var items = o.query.results.item;  
+      var cdrh_output = '';  
+      var no_items=items.length;  
+      for(var i=0;i<no_items;i++){  
+        var title = items[i].title;  
+        var link = items[i].link;  
+        var desc = items[i].description; 
+        var date = items[i].pubDate; 
+        cdrh_output += "<h4><a href='" + link + "'>"+title+"</a></h4><p>" + date + "</p><p>" + desc + "</p>";  
+        }
+      // Place news stories in div tag           
+      document.getElementById('devices').innerHTML = cdrh_output;
+    }
+    </script>  
   </head>
 
   <body>
@@ -52,33 +85,14 @@
       <div class="small-12 columns">
         <h3>CDRHNew: News and Updates</h3>         
       </div>
-      <div id='biologics' class="small-11 small-centered columns news">  
+      <div id='devices' class="small-11 small-centered columns news">  
       </div>
     </div><!-- row -->
 
   {% include footer.html %} 
-    <script>
-      $(document).ready(function() {
-        $.get('http://www.fda.gov/AboutFDA/ContactFDA/StayInformed/RSSFeeds/Biologics/rss.xml', function(data) {
-          var feed = document.CreateDocumentFragment();
-          $(data).find("item").each(function () {
-            var el = $(this); 
-            feed.append("<h4><a href='" + el.find(("link").text()) + "'>"+ el.find(("title").text()) + "</a></h4><p>" + el.find(("pubDate").text()) + "</p><p>" + el.find(("description").text()) + "</p>");
-          });  
-          $('#biologics').append(feed);       
-        });
 
-        $.get('http://www.fda.gov/AboutFDA/ContactFDA/StayInformed/RSSFeeds/Drugs/rss.xml', function(data) {
-          var feed = document.CreateDocumentFragment();
-          $(data).find("item").each(function () {
-            var el = $(this); 
-            feed.append("<h4><a href='" + el.find(("link").text()) + "'>"+ el.find(("title").text()) + "</a></h4><p>" + el.find(("pubDate").text()) + "</p><p>" + el.find(("description").text()) + "</p>");
-          });  
-          $('#drugs').append(feed);       
-        });        
-      });
-        
-    </script>
+  <script src="https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%3D%22http%3A%2F%2Fwww.fda.gov%2FAboutFDA%2FContactFDA%2FStayInformed%2FRSSFeeds%2FDrugs%2Frss.xml%22&format=json&diagnostics=true&callback=fda_stories"></script>
+  <script src="https://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20rss%20where%20url%3D%22http%3A%2F%2Fwww.accessdata.fda.gov%2Fscripts%2Fcdrh%2Fcfdocs%2FcfTopic%2Fcdrhnew-rss.cfm%22&format=json&diagnostics=true&callback=cdrh_stories"></script>
   </body>
 </html>
 
